@@ -143,12 +143,12 @@ def update_user_status(id):
     if not user or user.delete_status:
         return jsonify({"message": "User not found"})
 
-    # if request.method == "GET":
-    #     return jsonify({
-    #         "status": user.status
-    #     })
+    if request.method == "GET":
+        return jsonify({
+            "status": user.status
+        })
 
-    data = request.json
+    data = request.get_json()
 
     user.status = data["status"]
     db.session.commit()
